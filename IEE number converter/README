@@ -1,0 +1,78 @@
+/*
+ * Filename: README
+ * Author: Logan R. Ramos
+ * UserID: cs30s120bo
+ * Date: 7/30/2020
+ * Sources of help: none
+ */
+
+Description
+-----------
+	The fpdec program takes in a 8bit hexadecimal inputed by the user as a
+string, parses the number into an unsigned long, extracts it's various IEEE
+parts (sign bit, exponent, mantissa) and displays it on screen.
+
+How to compile
+--------------
+	The user can compile the program by locating the directory that
+contains the program files, and running 'make'.
+
+How to run
+----------
+	To run the program, type the executable name followed by a 8bit hex
+string. Example:
+
+	./fpdec 0xF0FA0000
+
+Normal output
+-------------
+	Normal output is printed to stdout. An example would be:
+
+[cs30xyz@pi-cluster]:pa3$ ./fpdec 0xF0FA0000
+Sign Bit: 1
+Unbiased Exponent: 98
+Mantissa: fa0000
+
+Abnormal output
+---------------
+Abnormal output is printed to sderr. This can happen if the user
+does not give a string input.
+
+[cs30xyz@pi-cluster]:pa3$ ./fpdec
+Incorrect number of arguments.
+
+Usage ./fpdec {hexstring}
+
+Another abnormal output which was noted on the class piazza was if
+there exists a carryover 32 bits, the part values will zeroize because
+ARM-32bit.
+
+Testing
+-------
+
+The logic in this program was tested using written testers for
+extractparts.s and parseNum.s. These Unit Tests called extractparts()
+and parseNum() with various string and and unsigned long values to
+see if they matched the correct output. All values found in extractParts
+were obtained through an existing IEEE converter found on this domain:
+
+babbage.cs.qc.cuny.edu/IEEE_754.old/32bit.html
+
+The overall program was tested on the executable with:
+	-large negative and positive hex values
+	-small negative and positive hex values
+	-Wrong number of inputs: no inputs or more than 2 inputs
+	-zeroed values
+
+Questions
+---------
+1) To convince them to act with integrity and fall through with doing the
+assignment independently, I would remind them the benefits of struggling
+through the assignment. The point of these PAs are to build skills and
+practice fundamentals that are difficult, but become familiar through error,
+and I would tell them this and also question how copying code is going to help
+their future. I would deny giving them my code, and instead provide references
+back to class slides or notes for guidance on where they're struggling.
+
+2) I have filled out my CAPE response.
+
